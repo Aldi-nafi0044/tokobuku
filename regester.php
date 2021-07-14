@@ -8,9 +8,9 @@ $confirm = $_POST['confirm'];
 
 if ($password == $confirm ){
     mysqli_query($koneksi, "insert into user values('','$nama','$email','$password','$confirm')");
-    header("location:index_login.php?pesan=berhasil");
+    header("location:index.php?pesan=berhasil");
 }  
 else {
-	header("location:index_login.php?pesan=gagal");
+	header("location:index.php?pesan=gagal");
 }  
 ?>

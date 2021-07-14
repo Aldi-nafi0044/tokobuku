@@ -17,12 +17,12 @@ $cek_email = mysqli_num_rows($data_email);
 $cek_password = mysqli_num_rows($data_password);
  
 if($cek_email && $cek_password){
-	header("location:index.php");
+	header("location:index_menu.php");
 }else if(!$cek_email && $cek_password){
-	header("location:index_login.php?pesan=emailsalah");
+	header("location:index.php?pesan=emailsalah");
 }else if($cek_email && !$cek_password){
-	header("location:index_login.php?pesan=passsalah");
+	header("location:index.php?pesan=passsalah");
 }else if(!$cek_email && !$cek_password){
-	header("location:index_login.php?pesan=2salah");
+	header("location:index.php?pesan=2salah");
 }
 ?>

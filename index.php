@@ -1,40 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="login.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
-
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Home page</title>
-
-    <!-- Bootstrap core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!--
 
-TemplateMo 546 Sixteen Clothing
-
-https://templatemo.com/tm-546-sixteen-clothing
-
--->
 
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-sixteen.css">
+    <link href="assets/css/templatemo-sixteen.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/owl.css">
-
-  </head>
-
-  <body>
-
-    <!-- ***** Preloader Start ***** -->
-    <div id="preloader">
+    <title>Login or sign-up page</title>
+</head>
+<body>
+<div id="preloader">
         <div class="jumper">
             <div></div>
             <div></div>
@@ -51,21 +38,6 @@ https://templatemo.com/tm-546-sixteen-clothing
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item active">
-                <a class="nav-link" href="index.php">Home
-                  <span class="sr-only">(current)</span>
-                </a>
-              </li> 
-              <li class="nav-item">
-                <a class="nav-link" href="products.php">Our Products</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="index_upload.php">Upload Book</a>
-              </li>
-            </ul>
-          </div>
         </div>
       </nav>
     </header>
@@ -96,65 +68,78 @@ https://templatemo.com/tm-546-sixteen-clothing
     </div>
     <!-- Banner Ends Here -->
 
-    <div class="latest-products">
-      <div class="container">
-        <div class="row" id="load_data">
-        <div class="col-md-12">
-          </div>
-          <?php
-              include 'config.php';
-              
-              $buku = mysqli_query($koneksi,"select * from buku");
-
-              while ($row = mysqli_fetch_array($buku)) {
-                $id_buku = $row["id_buku"];
-                $gambar_buku = $row["gambar_buku"];
-                $harga = $row["harga"];
-                $judul_buku = $row["judul_buku"];
-                if (strlen($judul_buku) > 60) {
-                  $judul_buku = substr($judul_buku, 0, 60) . "...";
-                }
-                $synopsis = $row["synopsis"];
-                if (strlen($synopsis) > 100) {
-                  $synopsis = substr($synopsis, 0, 100) . "...";
-                }
-            ?>
-          <div class="col-md-4">
-            <div class="product-item">
-              <a href="#"><img src="imageview.php?id_buku=<?php echo $id_buku; ?>" ></a>
-              <div class="down-content" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                <a href="#"><h4><?php echo $judul_buku; ?></h4></a>
-                <h6><?php echo $harga; ?></h6>
-                <p><?php echo $synopsis; ?></p>
-              </div>
+<div class="container login-container">
+            <div class="row">
+                <div class="col-md-6 login-form-2">
+                    <h3>Login</h3>
+                    <form method="post" action="login.php" name="form">
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Masukkan Email" value="" id="email" name="email" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Masukkan Password" value="" id="passowrd" name="password" required/>
+                        </div>
+                        <div class="form-group">
+                            <div style="color: red" class="form-control" text="pastikan benar semua">
+                            <?php 
+                                if(isset($_GET['pesan'])){
+                                    if($_GET['pesan'] == "emailsalah"){
+                                        echo "email salah";
+                                    }else if($_GET['pesan'] == "passsalah"){
+                                        echo "password salah";
+                                    }else if($_GET['pesan'] == "2salah"){
+                                        echo "email dan password salah";
+                                    }
+                            }
+                            ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btnSubmit" value="Login" />
+                        </div>
+                        
+                        </form>
+                </div>
+                <div class="col-md-6 login-form-1">
+                    <h3>Sign Up</h3>
+                    <form method="post" action="regester.php" name="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="masukkan Nama" value="" id="nama" name="nama" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="masukkan Email " value="" id="email" name="email" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="masukkan Password " value="" id="passowrd" name="password" required/>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="masukkan Password kembali" value="" id="confirm" name="confirm" required/>
+                        </div>
+                        <div class="form-group">
+                            <div style="color: black" class="form-control" text="pastikan sudah di isi semua">
+                            <?php 
+                                if(isset($_GET['pesan'])){
+                                    if($_GET['pesan'] == "berhasil"){
+                                        echo "berhasil tersimpan";
+                                    }else if($_GET['pesan'] == "gagal"){
+                                        echo "Password tidak sama dengan konfirmasi password";
+                                    }
+                            }
+                            ?>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btnSubmit" value="SIMPAN">sign-up</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-          </div>
-          <?php } ?>
-          <!-- Modal -->
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                <div class="product-item">
-                  <a href="#"><img src="imageview.php?id_buku=<?php echo $id_buku; ?>" ></a>
-                  <div class="down-content">
-                    <a href="#"><h4><?php echo $judul_buku; ?></h4></a>
-                    <h6><?php echo $harga; ?></h6>
-                    <p><?php echo $synopsis; ?></p>
-                  </div>
-                </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     
     <footer>
       <div class="container">
@@ -194,9 +179,8 @@ https://templatemo.com/tm-546-sixteen-clothing
           }
       }
     </script>
-    <!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-  </body>
 
+
+</body>
 </html>

@@ -9,6 +9,6 @@ if(isset($_GET['id_buku']))
 }
 else
 {
-    header('location:index.php');
+    header('location:index_menu.php');
 }
 ?>   
